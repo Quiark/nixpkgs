@@ -11544,6 +11544,9 @@ in
   ip2location-c = callPackage ../development/libraries/ip2location-c { };
 
   irrlicht = callPackage ../development/libraries/irrlicht { };
+  irrlicht_mac = callPackage ../development/libraries/irrlicht/mac.nix {
+    inherit (darwin.apple_sdk.frameworks) Cocoa OpenGL IOKit;
+  };
 
   isocodes = callPackage ../development/libraries/iso-codes { };
 
