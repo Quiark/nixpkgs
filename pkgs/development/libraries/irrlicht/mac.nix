@@ -25,13 +25,12 @@ stdenv.mkDerivation rec {
   postUnpack = ''
     cp -r ${irrlichtZip}/* $sourceRoot/
     chmod -R 777 $sourceRoot
-  '';
+	'';
 
   patches = [ ./mac_device.patch ];
   dontFixCmake = true;
 
   cmakeFlags = [
-    "-DCMAKE_FRAMEWORK_PATH=${OpenGL}/Library/Frameworks/"
     "-DIRRLICHT_STATIC_LIBRARY=ON"
     "-DIRRLICHT_BUILD_EXAMPLES=OFF"
     "-DIRRLICHT_INSTALL_MEDIA_FILES=OFF"
@@ -40,7 +39,7 @@ stdenv.mkDerivation rec {
   ];
 
   nativeBuildInputs = [ cmake ];
-  buildInputs = [ unzip Cocoa OpenGL IOKit ];
+  buildInputs = [ unzip OpenGL Cocoa IOKit ];
 
   meta = {
     homepage = http://irrlicht.sourceforge.net/;
