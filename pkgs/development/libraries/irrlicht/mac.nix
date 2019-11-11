@@ -16,10 +16,10 @@ stdenv.mkDerivation rec {
   inherit version;
 
   src = fetchFromGitHub {
-    owner = "quiark";
-    repo = "IrrlichtCMake";
-    rev = "09dcbacef1bc65da780f45ad4a4c4dad561b3949";
-    sha256 = "1fzlrdynqhfc514pn054xwp2p8h6smjrvzrgk5csjy5nslblv2cs";
+		owner = "quiark";
+		repo = "IrrlichtCMake";
+		rev = "c82e59952a6fc079bfe2e6e75ccba681a9268342";
+		sha256 = "0cxyyxif6vch6zsfdrkbq2zf5g208h2lmslskpjan3ha3qvv0aqn";
   };
 
   postUnpack = ''
