@@ -1,13 +1,14 @@
-{ stdenv, fetchFromGitHub, cmake, irrlicht, libpng, bzip2, curl, libogg, jsoncpp
+{ stdenv, fetchFromGitHub, cmake, irrlicht_mac, libpng, bzip2, curl, libogg, jsoncpp
 , libjpeg, libXxf86vm, libGLU_combined, openal, libvorbis, sqlite, luajit_2_1_gc64
 , freetype, gettext, doxygen, ncurses, graphviz, xorg
-, leveldb, postgresql, hiredis
+, leveldb, postgresql, hiredis, libiconv, OpenGL, OpenAL ? openal, Carbon, Cocoa
 }:
 
 with stdenv.lib;
 
 let
   boolToCMake = b: if b then "ON" else "OFF";
+  irrlicht = irrlicht_mac;
 
   generic = { version, rev ? version, sha256, dataRev ? version, dataSha256, buildClient ? true, buildServer ? false }: let
     sources = {
@@ -39,6 +40,8 @@ let
     ] ++ optionals buildClient [
       "-DOpenGL_GL_PREFERENCE=GLVND"
     ];
+    
+    patches = [ ./fix_wordsize_confusion.patch ];
 
     NIX_CFLAGS_COMPILE = [ "-DluaL_reg=luaL_Reg" ]; # needed since luajit-2.1.0-beta3
 
@@ -46,6 +49,8 @@ let
 
     buildInputs = [
       irrlicht luajit_2_1_gc64 jsoncpp gettext freetype sqlite curl bzip2 ncurses
+    ] ++ optionals stdenv.isDarwin [ 
+      libiconv OpenGL OpenAL Carbon Cocoa
     ] ++ optionals buildClient [
       libpng libjpeg libGLU_combined openal libogg libvorbis xorg.libX11 libXxf86vm
     ] ++ optional buildServer [
