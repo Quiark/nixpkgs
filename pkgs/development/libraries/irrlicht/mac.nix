@@ -18,8 +18,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
 		owner = "quiark";
 		repo = "IrrlichtCMake";
-		rev = "c82e59952a6fc079bfe2e6e75ccba681a9268342";
-		sha256 = "0cxyyxif6vch6zsfdrkbq2zf5g208h2lmslskpjan3ha3qvv0aqn";
+		rev = "523a5e6ef84be67c3014f7b822b97acfced536ce";
+		sha256 = "10ahnry2zl64wphs233gxhvs6c0345pyf5nwa29mc6yn49x7bidi";
   };
 
   postUnpack = ''
