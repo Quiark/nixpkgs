@@ -41,7 +41,7 @@ let
       "-DOpenGL_GL_PREFERENCE=GLVND"
     ];
     
-    patches = [ ./fix_wordsize_confusion.patch ];
+    patches = [ ./fix_wordsize_confusion.patch ./disable_fixup.patch ];
 
     NIX_CFLAGS_COMPILE = [ "-DluaL_reg=luaL_Reg" ]; # needed since luajit-2.1.0-beta3
 
